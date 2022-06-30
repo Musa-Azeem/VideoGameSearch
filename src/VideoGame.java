@@ -8,9 +8,9 @@ public class VideoGame {
     private String name;
     private String console;
 
-    public VideoGame(String aName, String aConsole){
-        this.setName(aName);
-        this.setConsole(aConsole);
+    public VideoGame(String name, String console){
+        this.setName(name);
+        this.setConsole(console);
     }
     public String getName(){
         return this.name;
@@ -18,20 +18,20 @@ public class VideoGame {
     public String getConsole(){
         return this.console;
     }
-    public void setName(String aName){
-        if(aName != null)
-            this.name = aName;
+    public void setName(String name){
+        if(name != null)
+            this.name = name;
         else
             this.name = "None";
     }
-    public void setConsole(String aConsole){
-        if(aConsole != null)
-            this.console = aConsole;
+    public void setConsole(String console){
+        if(console != null)
+            this.console = console;
         else
             this.console = "None";
     }
     public String toString(){
-        return this.name+"\t"+this.console;
+        return this.name+"\n\t"+this.console;
     }
 
 }
