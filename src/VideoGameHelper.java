@@ -32,7 +32,6 @@ public class VideoGameHelper {
                 if(splitLine.length == BODY_FIELD_AMT){      //check that line was formatted correctly
                     videoGameName = splitLine[0];                     //set name to the first field
                     videoGameConsole = splitLine[1];                  //set the console to the second field
-                    // VideoGame videoGame = new VideoGame(name, console);    //create new instance of a Video Game using the data
                     VideoGamesLL.add(new VideoGame(videoGameName, videoGameConsole));                            //add new instance to the linked list
                 }
             }
@@ -60,7 +59,6 @@ public class VideoGameHelper {
         else {    //if user chooses to write new file or overwrite
             try {
                 PrintWriter fileWriter = new PrintWriter(new FileOutputStream(filename));
-                // TODO head
                 while (currentResults.hasNext()) {    //while the VideoGame at current exists
                     //print the name of the video game at current, the delim, and then the console to the file
                     fileWriter.println(currentResults.getCurrent().getName() + DELIM + currentResults.getCurrent().getConsole());
@@ -76,11 +74,10 @@ public class VideoGameHelper {
 
     // method to search for certain strings in the names and console of each video game
     public void search(String name, String console){
-        // TODO completely redo
         currentResults = new GenLL<VideoGame>();    // reset currentResults
         /*
         create a temporary linked list. This list will contain the video games that
-        contain the string the user entered, or the list will contain all the video games if the user entered *
+        contain the string the user entered, or will contain all the video games if the user entered *
         */
         GenLL<VideoGame> temp = new GenLL<VideoGame>();
         if(name.equals(WILDCARD)){ //if the user entered * for name,
@@ -110,7 +107,7 @@ public class VideoGameHelper {
                 temp.gotoNext();
             }
         }
-        else{                              //if user entered something other than *
+        else{     //if user entered something other than *
             while(temp.hasNext()){
                 //check if the console of the video game at temp's current contains the input string, Ignoring case
                 if(temp.getCurrent().getConsole().toLowerCase().contains(console.toLowerCase())){

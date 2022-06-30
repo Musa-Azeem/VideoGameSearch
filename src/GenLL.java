@@ -29,30 +29,30 @@ public class GenLL<T> {
             this.tail = this.current = this.head;     //start tail and current at head, as for now this is the only node
         }
         else {
-            tail.link = newNode;       //if list is not empty, set tail's link to the new node
-            tail = tail.link;          //set tail to the new node, so that it is at the end
+            this.tail.link = newNode;       //if list is not empty, set tail's link to the new node
+            this.tail = this.tail.link;          //set tail to the new node, so that it is at the end
         }
     }
     public T getCurrent(){
-        if(current == null)
+        if(this.current == null)
             return null;
-        return current.data;
+        return this.current.data;
     }
     public void gotoNext(){
-        if(current == null)
+        if(this.current == null)
             return;
-        current = current.link;
+        this.current = this.current.link;
     }
     public void reset(){
-        current = head;
+        this.current = this.head;
     }
     public boolean hasNext(){
-        if(current == null)
+        if(this.current == null)
             return false;
-        return current.data != null;
+        return this.current.data != null;
     }
     public void print(){
-        for(ListNode temp = head; temp != null; temp = temp.link){
+        for(ListNode temp = this.head; temp != null; temp = temp.link){
             System.out.println(temp.data);
         }
     }
