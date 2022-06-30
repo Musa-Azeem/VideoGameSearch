@@ -2,8 +2,6 @@
 Written by Musa Azeem
 This class acts as the front end, where the user chooses how to use the program
  */
-import java.util.InputMismatchException;
-import java.util.Locale;
 import java.util.Scanner;
 public class VideoGameFrontEnd {
     public static Scanner kb = new Scanner(System.in);
@@ -19,7 +17,7 @@ public class VideoGameFrontEnd {
                     repeat = false;
                     break;
                 case 1:
-                    readFromFile();
+                    readFile();
                     break;
                 case 2:
                     searchDatabase();
@@ -77,10 +75,10 @@ public class VideoGameFrontEnd {
         }
         return ret;
     }
-    public static void readFromFile(){
+    public static void readFile(){
         System.out.println("Enter the file name: ");
         String file = kb.nextLine();
-        v.readFromFile(file);
+        v.readFile(file);
     }
     public static void searchDatabase(){
         System.out.println("Enter the name of the game or '*' for all names");
