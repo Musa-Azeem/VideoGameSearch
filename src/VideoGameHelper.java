@@ -101,7 +101,7 @@ public class VideoGameHelper {
             VideoGamesLL.reset();
         }
         /*
-        Once temp contains the wanted video games based on name, if the user entered * add all the video games
+        Once temp contains the desired video games based on name, if the user entered * add all the video games
         in temp to currentResults. Otherwise, add only the video games that contain the input string
          */
         if(console.equals(WILDCARD)){       //if user entered *

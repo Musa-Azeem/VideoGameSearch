@@ -10,9 +10,9 @@ public class GenLL<T> {
     private class ListNode{
         T data;
         ListNode link;
-        public ListNode(T aData, ListNode aLink){
-            data = aData;
-            link = aLink;
+        public ListNode(T data, ListNode link){
+            this.data = data;
+            this.link = link;
         }
     }
     private ListNode head;   //will always be first node in list
@@ -20,17 +20,18 @@ public class GenLL<T> {
     private ListNode tail;   //will always be last node in list
 
     public GenLL(){
-        head = tail = null;
+        this.head = this.tail = null;
     }
-    public void add(T aData){
-        ListNode newNode = new ListNode(aData, null);
-        if(head==null){     //if list is empty, set head to the new node
-            head = newNode;
-            tail = current = head;     //start tail and current at head, as for now this is the only node
-            return;
+    public void add(T data){
+        ListNode newNode = new ListNode(data, null);
+        if(this.head==null){     //if list is empty, set head to the new node
+            this.head = newNode;
+            this.tail = this.current = this.head;     //start tail and current at head, as for now this is the only node
         }
-        tail.link = newNode;       //if list is not empty, set tail's link to the new node
-        tail = tail.link;          //set tail to the new node, so that it is at the end
+        else {
+            tail.link = newNode;       //if list is not empty, set tail's link to the new node
+            tail = tail.link;          //set tail to the new node, so that it is at the end
+        }
     }
     public T getCurrent(){
         if(current == null)
