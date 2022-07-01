@@ -1,25 +1,51 @@
 /*
-Written by Musa Azeem
-This class contains the functionality to read from a file and populate a Linked List,
-write to a file from a linked list, and to search a linked list for certain values
- */
+Author:     Musa Azeem
+Date:       3/29/21
+This file implements the VideoGameHelperClass, which contains the methods that provide the 
+    functionality of the program to load a video game database, search for certain entries, 
+    and write the results to a file or the console.
+
+Class Members:
+    DELIM (String):         delimeter (tab) of database file
+    BODY_FIELD_AMT (int):   number of fields in a correctly formatted database file
+    WILDCARD (String):      string that serves a wildcard for search
+    VideoGamesLL (GenLL<VideoGame>):    Linked List of all entries loaded from the database
+    currentResults (GenLL<VideoGame>):  Linked list of entries found during the most recent search
+
+Class Methods:
+    Default Constructor:    Initializes instance with empty linked lists
+    readFile:       reads a database file and loads all entries into VideoGameLL
+    writeToFile:    writes or appends all entries in currentResults to a file
+    search:         Searches VideoGamesLL for entries based on the video game title or console, and saves results to currentResults
+    printAll:       prints all entries in VideoGamesLL
+    printResults:   prints all entries in currentResults
+*/
 import java.io.*;
 import java.util.Scanner;
 public class VideoGameHelper {
     private final String DELIM = "\t";
     private final int BODY_FIELD_AMT = 2;
     private final String WILDCARD = "*";
-    private GenLL<VideoGame> VideoGamesLL;            //linked list for all video games loaded from a file
-    private GenLL<VideoGame> currentResults;      //linked list for current result of search
+    private GenLL<VideoGame> VideoGamesLL;              //linked list for all video games loaded from a file
+    private GenLL<VideoGame> currentResults;            //linked list for current result of search
 
     public VideoGameHelper(){
-        // Default contructor initializes linked list as empty
+        /*
+        Default contructor initializes VideoGamesLL and currentResults as empty linked lists
+        */
         VideoGamesLL = new GenLL<VideoGame>();
         currentResults = new GenLL<VideoGame>();
     }
     public void readFile(String filename){
-        // reads video games from a file given by user
-        VideoGamesLL = new GenLL<VideoGame>();      //reset values of VideoGamesLL to null before reading from a new file
+        /*
+        Reads a database file and loads entries into VideoGamesLL
+        If a line is not formatted correctly, the line is skipped
+        If the file cannot be opened, a message indicating so is printed to the console
+
+        Parameters:
+            filename (String):  name of file to read
+        */
+        VideoGamesLL = new GenLL<VideoGame>();      //reset VideoGamesLL to empty before reading from a new file
         try{
             Scanner fileScanner = new Scanner(new File(filename));
             String line = null;
