@@ -3,8 +3,8 @@
 Author: Musa Azeem  
 Date: 3/29/21  
 
-This project loads a database of video games and searches for video games  
-based on their titles and console, with functionality to save the results to  
+This project loads a database of video games, searches for video games  
+based on their titles and console, and can save the search results to  
 a new file.
 
 ## Requirements
