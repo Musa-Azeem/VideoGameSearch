@@ -30,7 +30,7 @@ Unix system with java installed
 ### Running the Project
 - Options will be displayed upon running the project
 - First, load a database into the project by entering 1
-    - an example video game database is locating is the `res` directory
+    - an example video game database is locating in the `res` directory
 - Enter 2 to search the database by Video Game title or by the name of the  
     console it runs on
     - entering `*` for either category will include all results
@@ -63,6 +63,6 @@ Unix system with java installed
 - It is defined in the file `src/VideoGame.java`
 
 ### GenLL
-- This class is an implementation of a generic linked list, with all the  
-    standard features
+- This class is a simple implementation of a generic linked list, with a  
+    selection of the standard features
 - It is defined in the file `src/GenLL.java`
