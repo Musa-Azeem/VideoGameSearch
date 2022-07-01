@@ -23,6 +23,16 @@ Unix system with java installed
         └── VideoGame.java
 
 ## Usage:
+### Clone this repository
+1. Open terminal
+2. Clone the repository  
+```
+    git clone "https://github.com/Musa-Azeem/VideoGameSearch"
+```
+3. Change Directory to local project repository
+```
+    cd VideoGameSearch
+```  
 ### Commands
     clean repository:   make clean
     compile project:    make compile
