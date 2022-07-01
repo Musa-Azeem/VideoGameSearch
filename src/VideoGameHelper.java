@@ -48,18 +48,11 @@ public class VideoGameHelper {
         VideoGamesLL = new GenLL<VideoGame>();      //reset VideoGamesLL to empty before reading from a new file
         try{
             Scanner fileScanner = new Scanner(new File(filename));
-            String line = null;
-            String[] splitLine = null;
-            String videoGameName = null;
-            String videoGameConsole = null;
+            String[] line = null;
             while(fileScanner.hasNextLine()){
-                line = fileScanner.nextLine();           //read next line in file
-                splitLine = line.split(DELIM);             //split line into two part at the tab delim
-                if(splitLine.length == BODY_FIELD_AMT){      //check that line was formatted correctly
-                    videoGameName = splitLine[0];                     //set name to the first field
-                    videoGameConsole = splitLine[1];                  //set the console to the second field
-                    VideoGamesLL.add(new VideoGame(videoGameName, videoGameConsole));                            //add new instance to the linked list
-                }
+                line = fileScanner.nextLine().split(DELIM);           //read next line in file
+                if(line.length == BODY_FIELD_AMT)      //check that line was formatted correctly
+                    VideoGamesLL.add(new VideoGame(line[0], line[1]));                            //add new instance to the linked list
             }
             fileScanner.close();
         }
