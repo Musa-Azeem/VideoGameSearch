@@ -140,22 +140,22 @@ public class VideoGameHelper {
             }
             VideoGamesLL.reset();
         }
-        
+
         /*
-        Once temp contains the desired video games based on name, if the user entered * add all the video games
-        in temp to currentResults. Otherwise, add only the video games that contain the input string
+        Once temp contains the desired video games based on name, if the user entered "*" add all the video games
+        in temp to currentResults. Otherwise, add only the video games that contain the console search string
          */
-        if(console.equals(WILDCARD)){       //if user entered *
+        if(console.equals(WILDCARD)){                       // if user entered *
             while(temp.hasNext()){
-                currentResults.add(temp.getCurrent());      //add all video games from temp to currentResults
+                currentResults.add(temp.getCurrent());      // add all video games from temp to currentResults
                 temp.gotoNext();
             }
         }
-        else{     //if user entered something other than *
+        else{                                               //if user entered something other than *
             while(temp.hasNext()){
                 //check if the console of the video game at temp's current contains the input string, Ignoring case
                 if(temp.getCurrent().getConsole().toLowerCase().contains(console.toLowerCase())){
-                    currentResults.add(temp.getCurrent());     //if so, add it to currentResults
+                    currentResults.add(temp.getCurrent());                          //if so, add it to currentResults
                 }
                 temp.gotoNext();
             }
@@ -163,9 +163,15 @@ public class VideoGameHelper {
         temp.reset();
     }
     public void printAll(){
+        /*
+        Prints all entries in VideoGamesLL to the console
+        */
         VideoGamesLL.print();
     }
     public void printResult(){
+        /*
+        Prints all entries in currentResults to console
+        */
         currentResults.print();
     }
 }
