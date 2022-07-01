@@ -29,7 +29,7 @@ Unix system with java installed
 ```
     git clone "https://github.com/Musa-Azeem/VideoGameSearch"
 ```
-3. Change Directory to local project repository
+3. Change Directory to local project
 ```
     cd VideoGameSearch
 ```  
