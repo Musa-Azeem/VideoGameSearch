@@ -33,6 +33,7 @@ public class VideoGameHelper {
         /*
         Default contructor initializes VideoGamesLL and currentResults as empty linked lists
         */
+
         VideoGamesLL = new GenLL<VideoGame>();
         currentResults = new GenLL<VideoGame>();
     }
@@ -45,27 +46,38 @@ public class VideoGameHelper {
         Parameters:
             filename (String):  name of file to read
         */
+
         VideoGamesLL = new GenLL<VideoGame>();      //reset VideoGamesLL to empty before reading from a new file
         try{
-            Scanner fileScanner = new Scanner(new File(filename));
+            Scanner fileScanner = new Scanner(new File(filename));      // Scanner to read file
             String[] line = null;
             while(fileScanner.hasNextLine()){
-                line = fileScanner.nextLine().split(DELIM);           //read next line in file
-                if(line.length == BODY_FIELD_AMT)      //check that line was formatted correctly
-                    VideoGamesLL.add(new VideoGame(line[0], line[1]));                            //add new instance to the linked list
+                line = fileScanner.nextLine().split(DELIM);             // read next line in file and split into fields [title, console]
+                if(line.length == BODY_FIELD_AMT)                       //check that line was formatted correctly
+                    VideoGamesLL.add(new VideoGame(line[0], line[1]));  //add new entry to the linked list
             }
             fileScanner.close();
         }
         catch(FileNotFoundException f){
-            System.out.println("File Not Found");
+            System.out.println("File Not Found");   // If unable to open file, report to user
         }
     }
+
     public void writeToFile(String filename, boolean append){
+        /*
+        Writes all entries in currentResults to a file
+        If append is true, it appends to the end of the file rather than overwriting it
+
+        Parameters:
+            filename (String):  name of file to write to
+            append (boolean):   true if appending
+        */
+
         if(append){   // if user chooses to append to file
             try{
-                PrintWriter fileWriter = new PrintWriter(new BufferedWriter(new FileWriter(filename, true)));
-                while(currentResults.hasNext()){     // while video game at current exists
-                    // print the name of the video game at current, the delim, and then the console to the file
+                PrintWriter fileWriter = new PrintWriter(new BufferedWriter(new FileWriter(filename, true)));   // fileWriter to append to file
+                while(currentResults.hasNext()){
+                    // print the name of each video game, the delimiter, and then the console name to the file
                     fileWriter.append(currentResults.getCurrent().getName()+DELIM+currentResults.getCurrent().getConsole()+"\n");
                     currentResults.gotoNext();
                 }
@@ -77,38 +89,50 @@ public class VideoGameHelper {
         }
         else {    //if user chooses to write new file or overwrite
             try {
-                PrintWriter fileWriter = new PrintWriter(new FileOutputStream(filename));
-                while (currentResults.hasNext()) {    //while the VideoGame at current exists
-                    //print the name of the video game at current, the delim, and then the console to the file
+                PrintWriter fileWriter = new PrintWriter(new FileOutputStream(filename));   // fileWriter to overwrite file
+                while (currentResults.hasNext()) {
+                    // print the name of each video game, the delimiter, and then the console name to the file
                     fileWriter.println(currentResults.getCurrent().getName() + DELIM + currentResults.getCurrent().getConsole());
                     currentResults.gotoNext();
                 }
                 fileWriter.close();
-            } catch (FileNotFoundException e) {
-                System.out.println("file not found");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            currentResults.reset();   //reset current so that it starts back at the head
+            currentResults.reset();     // reset current pointer back to the head
         }
     }
 
     // method to search for certain strings in the names and console of each video game
     public void search(String name, String console){
-        currentResults = new GenLL<VideoGame>();    // reset currentResults
         /*
-        create a temporary linked list. This list will contain the video games that
-        contain the string the user entered, or will contain all the video games if the user entered *
+        Searches VideoGamesLL for entries based on a search string for the name and a search string for the console of the video game
+        if the search string is contained anywhere within the entry, it is considered a match
+        If the user enters "*" for either category, all entries are matched for that category
+
+        Parameters:
+            name (String):      search string to find in video game names
+            console (String):   search string to find in video game console names
+        */
+
+        currentResults = new GenLL<VideoGame>();    // reset currentResults
+
+        /*
+        Create a temporary linked list. This list will contain the video games whose names contain the
+        name search string the user entered, or will contain all the video games if the user entered *
         */
         GenLL<VideoGame> temp = new GenLL<VideoGame>();
-        if(name.equals(WILDCARD)){ //if the user entered * for name,
+
+        if(name.equals(WILDCARD)){                      //if the user entered * for name,
             while(VideoGamesLL.hasNext()){
-                temp.add(VideoGamesLL.getCurrent());  //copy the linked list of all video games onto the temp list
+                temp.add(VideoGamesLL.getCurrent());    //copy the linked list of all video games onto the temp list
                 VideoGamesLL.gotoNext();
             }
             VideoGamesLL.reset();
         }
         else {                          //if the user entered something other than *
             while (VideoGamesLL.hasNext()) {
-                //check if the name of the video game at current contains the input string, ignoring case
+                //check if each video game's name contains the name search string, ignoring case
                 if (VideoGamesLL.getCurrent().getName().toLowerCase().contains(name.toLowerCase())) {
                     temp.add(VideoGamesLL.getCurrent());   //if so, add that video game to temp
                 }
@@ -116,6 +140,7 @@ public class VideoGameHelper {
             }
             VideoGamesLL.reset();
         }
+        
         /*
         Once temp contains the desired video games based on name, if the user entered * add all the video games
         in temp to currentResults. Otherwise, add only the video games that contain the input string

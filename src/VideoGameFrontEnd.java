@@ -30,6 +30,7 @@ public class VideoGameFrontEnd {
         Parameters: 
             args (String[]): command line arguments
         */
+
         System.out.println("Welcome to the video game database!");
         boolean repeat = true;
         while(repeat){  // loops until user enters 0
@@ -66,6 +67,7 @@ public class VideoGameFrontEnd {
         /*
         Prints user's options to the console
         */
+
         System.out.println("\nEnter 1 to load the video game database\n" +
                 "Enter 2 to search the database\n" +
                 "Enter 3 to print current results\n" +
@@ -82,6 +84,7 @@ public class VideoGameFrontEnd {
         Return:
             int:    user input
         */
+
         boolean repeat = true;
         int ret = 0;
         while(repeat){
@@ -110,6 +113,7 @@ public class VideoGameFrontEnd {
         Return:
             boolean:    user input
         */
+
         boolean repeat = true;
         boolean ret = false;
         while(repeat) {
@@ -129,6 +133,7 @@ public class VideoGameFrontEnd {
         /*
         Recieves a filename from the console, and calls VideoGameHelper's readFile method
         */
+
         System.out.println("Enter the file name: ");
         String file = kb.nextLine();
         v.readFile(file);
@@ -139,6 +144,7 @@ public class VideoGameFrontEnd {
             and calls VideoGameHelper's search method
         The method then calls VideoGameHelper's printResult method to print the results to the console
         */
+
         System.out.println("Enter the name of the game or '*' for all names");
         String findName = kb.nextLine();
         System.out.println("Enter the name of the console or '*' for all consoles");
@@ -151,6 +157,7 @@ public class VideoGameFrontEnd {
         Recieves a filename from the console, and a boolean to append or not
         Method then calls VideoGameHelper's writeToFile method to write to the file
         */
+        
         System.out.println("Enter the file name to print out.");
         String file = kb.nextLine();
         System.out.println("Append to file? True or false.");
