@@ -1,7 +1,7 @@
 # Video Game Search
 
 Author: Musa Azeem  
-Date: 3/29/21  
+Date Completed: 7/1/22
 
 This project loads a database of video games, searches for video games  
 based on their titles and console, and can save the search results to  
